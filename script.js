@@ -1,5 +1,6 @@
 const apiDomain = "https://api-sekingo-stage.thebluelobby.com/";
 const appUrl = "https://yk-chong.github.io/mytreasurehunt/";
+//const appUrl = "https://192.168.1.26:8080/";
 
 function redirectIfNoLoginRecord(url) {
     if (sessionStorage.getItem('token') != null) {
