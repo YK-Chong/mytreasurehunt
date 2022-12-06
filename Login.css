@@ -1,3 +1,10 @@
+body {
+  height: 100%;
+  overflow-y: hidden;
+  overflow: hidden;
+  overscroll-behavior: none;
+  overscroll-behavior-y: none;
+}
 .u-dialog-section-4 {
   min-height: 500px;
 }
@@ -370,10 +377,11 @@
 
    .u-section-1 {
     min-height: 783px;
+    margin-top: -50px;
   }
 
   .u-section-1 .u-image-1 {
-    height: 506px;
+    height: 481px;
     width: 343px;
     margin-top: 157px;
     margin-left: auto;
@@ -381,7 +389,7 @@
   }
 
   .u-section-1 .u-image-2 {
-    width: 279px;
+    width: 250px;
     height: 243px;
     margin-top: -632px;
   }

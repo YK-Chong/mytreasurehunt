@@ -2,8 +2,14 @@ body {
    height: 100%;
    overflow-y: hidden;
    overflow: hidden;
+   overscroll-behavior: none;
+   overscroll-behavior-y: none;
+   -webkit-overflow-scrolling: auto;
 }
-
+.wrapgrid{
+  overflow-x: hidden;
+  overflow-y: hidden;
+}
 .u-section-1 .u-sheet-1 {
   min-height: 1354px;
 }
