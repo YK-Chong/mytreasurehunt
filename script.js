@@ -1,5 +1,5 @@
 const apiDomain = "https://api-sekingo-stage.thebluelobby.com/";
-const appUrl = "https://yk-chong.github.io/mytreasurehunt/";
+const appUrl = "http://sekingo.visitsekinchan.com/";
 let coordinate = null;
 
 function redirectIfNoLoginRecord(url) {
