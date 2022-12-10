@@ -48,19 +48,20 @@ function closeMapNavBar() {
 function openGoogleMap() {
     if (coordinate == null)
         return;
-    var isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
-    if (isIOS) {
-        window.open('comgooglemapsurl://maps.google.com/?q=@' + coordinate);
-    }
-    else {
-        window.open('https://maps.google.com/?q=' + coordinate);
-    }
+    // var isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+    // if (isIOS) {
+    //     window.open('comgooglemapsurl://maps.google.com/?q=@' + coordinate);
+    // }
+    // else {
+    //     window.open('https://maps.google.com/?q=' + coordinate);
+    // }
+    window.open('https://maps.google.com/?q=' + coordinate);
 }
 
 function openWaze() {
     if (coordinate == null)
         return;
-    window.open("https://www.waze.to/?ll=" + coordinate + "&zoom=10");
+    window.open("https://www.waze.com/ul?q=" + coordinate + "&navigate=yes&zoom=10");
 }
 
 function secureWebsite() {
@@ -82,7 +83,7 @@ mobileAndTabletCheck = function () {
 }
 window.onload = onload();
 
-function onload(){
+function onload() {
     //secureWebsite();
     mobileAndTabletCheck();
 }
