@@ -2,13 +2,13 @@ const apiDomain = "https://api-sekingo.visitsekinchan.com/";
 const appUrl = "https://sekingo.visitsekinchan.com/";
 let coordinate = null;
 
-function redirectIfNoLoginRecord(url) {
+function redirectIfNoLoginRecord() {
     if (sessionStorage.getItem('token') != null) {
         return;
     }
     const token = getCookie("rmbtoken");
     if (token == '')
-        window.location.replace(url);
+        window.location.replace(appUrl + "Home.html");
 }
 
 function getCookie(cname) {
