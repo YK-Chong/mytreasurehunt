@@ -53,11 +53,13 @@
                   class="u-border-1 u-border-grey-30 u-custom-font u-heading-font u-input u-input-rectangle u-radius-50 u-white u-input-2"
                   required="required" placeholder="Age">
                   <option value="" disabled selected hidden>Age</option>
-                  <option value="7 - 12 years old">7 - 12 years old</option>
-                  <option value="13 - 18 years old">13 - 18 years old</option>
-                  <option value="19 - 25 years old">19 - 25 years old</option>
-                  <option value="26 - 35 years old">26 - 35 years old</option>
-                  <option value="36 and above">36 and above</option>
+                  <option value="Below 14 years">Below 14 years</option>
+                  <option value="15 - 21 years">15 - 21 years</option>
+                  <option value="22 - 30 years">22 - 30 years</option>
+                  <option value="31 - 40 years">31 - 40 years</option>
+                  <option value="41 - 50 years">41 - 50 years</option>
+                  <option value="51 - 60 years">51 - 60 years</option>
+                  <option value="61 years and above">61 years and above</option>
                 </select>
                 <svg class="u-caret u-caret-svg" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
                   xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="16px" height="16px"
@@ -115,11 +117,12 @@
             <div class="u-form-checkbox u-form-group u-form-group-6">
               <input style="height: 10px;" type="checkbox" id="checkbox-fa2a" name="checkbox" value="On">
               <label for="checkbox-fa2a" class="u-custom-font u-heading-font u-label u-label-6"> I've read and agree to
-                <a href="https://google.com"><span><u>Terms of Service and Privacy Policy</u> </span></a> </label>
+                <a href="https://www.hlb.com.my/content/dam/hlb/my/docs/pdf/Personal/Footer/EN/privacy_notice_en.pdf?icp=hlb-en-all-footer-txt-privacy"><span><u>Terms of Service and Privacy Policy</u> </span></a> </label>
             </div>
           </form>
         </div>
-        <div id="agreeError" style="color: red; font-size: 10px; height: 14px; margin-bottom: -16px; left: 0; text-align: center;"
+        <div id="agreeError"
+          style="color: red; font-size: 10px; height: 14px; margin-bottom: -16px; left: 0; text-align: center;"
           class="error-message-agreeError"></div>
         <a id="playNow" class="u-border-none u-btn u-button-style u-none u-btn-1"><span
             class="u-file-icon u-icon u-icon-1"><img style="margin-bottom: 15px;" onclick="return Checking();"
@@ -148,7 +151,7 @@
           <h6 class="u-align-center-md u-align-center-sm u-align-center-xs u-text u-text-1" style="margin-bottom: 19px">
             Which of the following
             cashless
-            payment methods do you use?</h6>
+            payment methods do you use? (Choose all that apply)</h6>
           <div class="answer-container" onclick="changeImage('survey1')">
             <img src="images/AnswerColumn.png" class="answer-img" id="survey1" alt="" data-image-width="664"
               data-image-height="147">
@@ -173,7 +176,7 @@
           <div class="answer-container" onclick="changeImage('survey5')"><img src="images/AnswerColumn.png"
               class="answer-img" id="survey5" alt="" data-image-width="664" data-image-height="147">
             <h6 class="centered">
-              Prefer Cash</h6>
+              None of the above</h6>
           </div>
           <style>
             .answer-container {
@@ -553,7 +556,7 @@
     var survey2Q = document.getElementById("survey2").src.toString().includes(resultQuestion) ? "Credit Card," : "";
     var survey3Q = document.getElementById("survey3").src.toString().includes(resultQuestion) ? "eWallet," : "";
     var survey4Q = document.getElementById("survey4").src.toString().includes(resultQuestion) ? "Bank QR," : "";
-    var survey5Q = document.getElementById("survey5").src.toString().includes(resultQuestion) ? "Prefer Cash" : "";
+    var survey5Q = document.getElementById("survey5").src.toString().includes(resultQuestion) ? "None of the above" : "";
     if (survey1Q != "") { SurveyNew = SurveyNew + survey1Q }
     if (survey2Q != "") { SurveyNew = SurveyNew + survey2Q }
     if (survey3Q != "") { SurveyNew = SurveyNew + survey3Q }
@@ -568,8 +571,8 @@
       "password_confirmation": confirm,
       "payment_method": SurveyNew,
       "checking": false,
-      "url": appUrl + "EmailVerified.html" + (params == null ? "" : params),
-      "expired_url": appUrl + "Home.html"
+      "url": (appUrl + "EmailVerified.html" + (params == null ? "" : params)),
+      "expired_url": (appUrl + "Home.html")
     };
     fetch(apiDomain + 'api/register',
       {
@@ -612,7 +615,7 @@
     var survey2Q = document.getElementById("survey2").src.toString().includes(resultQuestion) ? "Credit Card," : "";
     var survey3Q = document.getElementById("survey3").src.toString().includes(resultQuestion) ? "eWallet," : "";
     var survey4Q = document.getElementById("survey4").src.toString().includes(resultQuestion) ? "Bank QR," : "";
-    var survey5Q = document.getElementById("survey5").src.toString().includes(resultQuestion) ? "Prefer Cash" : "";
+    var survey5Q = document.getElementById("survey5").src.toString().includes(resultQuestion) ? "None of the above" : "";
     if (survey1Q != "") { SurveyNew = SurveyNew + survey1Q }
     if (survey2Q != "") { SurveyNew = SurveyNew + survey2Q }
     if (survey3Q != "") { SurveyNew = SurveyNew + survey3Q }
@@ -628,8 +631,8 @@
       "password_confirmation": confirm,
       "payment_method": SurveyNew,
       "checking": true,
-      "url": appUrl + "EmailVerified.html" + (params == null ? "" : params),
-      "expired_url": appUrl + "Home.html"
+      "url": (appUrl + "EmailVerified.html" + (params == null ? "" : params)),
+      "expired_url": (appUrl + "Home.html")
     };
     fetch(apiDomain + 'api/register',
       {
