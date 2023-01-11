@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
   <title>TreasureHunt</title>
-  <link rel="shortcut icon" href="TemplateData/favicon.ico">
+  <link rel="shortcut icon" href="TemplateData/favicon.ico?v=1.00">
   <link rel="stylesheet" href="TemplateData/style.css">
   <style>
     :root {
@@ -24,11 +24,25 @@
 
 <body>
   <div id='treasure-hunt-content' style="display: block">
-    <div id="unity-container" class="unity-desktop">
+    <div id="unity-container" class="unity-desktop" style="justify-content: center; display: flex;">
       <canvas id="unity-canvas" width=960 height=600></canvas>
       <div id="unity-loading-bar">
         <div id="unity-progress-bar-empty">
           <div id="unity-progress-bar-full"></div>
+        </div>
+      </div>
+      <div id="mapnavbar" style="display: none;">
+        <div class="column">
+          <div class="item">
+            <img src="./images/Icon_GoogleMap.png" style="width:75px" onclick="openGoogleMap()">
+            <p>Google Map</p>
+          </div>
+        </div>
+        <div class="column">
+          <div class="item">
+            <img src="./images/Icon_Waze.png" style="width:75px" onclick="openWaze()">
+            <p>Waze</p>
+          </div>
         </div>
       </div>
       <div id="unity-warning"> </div>
@@ -45,6 +59,58 @@
       var progressBarFull = document.querySelector("#unity-progress-bar-full");
       var fullscreenButton = document.querySelector("#unity-fullscreen-button");
       var warningBanner = document.querySelector("#unity-warning");
+
+      //eric chan ------
+      //check ios version
+      checkIosVersion();
+      function checkIosVersion() {
+        navigator.sayswho = (function(){
+          var ua= navigator.userAgent;
+          var tem; 
+          var M= ua.match(/(opera|chrome|safari|firefox|msie|trident(?=\/))\/?\s*(\d+)/i) || [];
+          if(/trident/i.test(M[1])){
+              tem=  /\brv[ :]+(\d+)/g.exec(ua) || [];
+              return 'IE '+(tem[1] || '');
+          }
+          if(M[1]=== 'Chrome'){
+              tem= ua.match(/\b(OPR|Edge)\/(\d+)/);
+              if(tem!= null) return tem.slice(1).join(' ').replace('OPR', 'Opera');
+          }
+          M= M[2]? [M[1], M[2]]: [navigator.appName, navigator.appVersion, '-?'];
+          if((tem= ua.match(/version\/(\d+)/i))!= null) M.splice(1, 1, tem[1]);
+          return M;
+      })();
+
+        console.log(navigator.userAgent, 'navigator.userAgent');
+        var isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+        if (navigator.sayswho[0] == 'Safari' && navigator.sayswho[1] < 15) {
+          // var v = (navigator.appVersion).match(/OS (\d+)_(\d+)_?(\d+)?/);
+          // var version = [parseInt(v[1], 10), parseInt(v[2], 10), parseInt(v[3] || 0, 10)];
+          // if (version[0] < 15) {
+            // unityShowBanner("Your IOS version is not compatible (v" + version[0] + "), please update your ios version.", 'error');
+          // alert(navigator.sayswho.join(" "));
+            return window.location.href = "/UpdateIos.html";
+          // }
+        } else {
+          checkAndroidVersion();
+        }
+
+        return true;
+      }
+
+      function checkAndroidVersion() {
+        function getAndroidVersion(ua) {
+          ua = (ua || navigator.userAgent).toLowerCase(); 
+          var match = ua.match(/android\s([0-9\.]*)/i);
+          return match ? match[1] : undefined;
+        };
+
+        getAndroidVersion(); //"4.2.1"
+        var version = parseInt(getAndroidVersion(), 10); //4
+        if (!isNaN(version) && version < 7) {
+          return window.location.href = "/UpdateAndroid.html";
+        }
+      }
 
       // Shows a temporary message banner/ribbon for a few seconds, or
       // a permanent error message on top of the canvas if type=='error'.
@@ -146,6 +212,12 @@
         border-top-right-radius: 30px;
       }
 
+      @media (min-width: 678px) {
+        #mapnavbar {
+          width: calc(100vh * 9 / 16);
+        }
+      }
+
       .item {
         text-align: center;
         display: block;
@@ -170,20 +242,7 @@
         margin-left: 40px;
       }
     </style>
-    <div id="mapnavbar" style="display: none;">
-      <div class="column">
-        <div class="item">
-          <img src="./images/Icon_GoogleMap.png" style="width:75px" onclick="openGoogleMap()">
-          <p>Google Map</p>
-        </div>
-      </div>
-      <div class="column">
-        <div class="item">
-          <img src="./images/Icon_Waze.png" style="width:75px" onclick="openWaze()">
-          <p>Waze</p>
-        </div>
-      </div>
-    </div>
+
   </div>
   <script src="./deviceOrientationHandler.js"></script>
 </body>
